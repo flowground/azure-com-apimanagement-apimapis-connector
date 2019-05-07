@@ -1,0 +1,224 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "serviceName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50,
+            "pattern": "^[a-zA-Z](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$"
+        },
+        "apiId": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256,
+            "pattern": "^[^*#&+:<>?]+$"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "API update contract details.",
+            "properties": {
+                "properties": {
+                    "description": "Properties of the API entity that can be updated.",
+                    "x-ms-client-flatten": true,
+                    "allOf": [
+                        {
+                            "description": "API base contract details.",
+                            "properties": {
+                                "apiRevision": {
+                                    "description": "Describes the Revision of the Api. If no value is provided, default revision 1 is created",
+                                    "maxLength": 100,
+                                    "minLength": 1,
+                                    "type": "string"
+                                },
+                                "apiRevisionDescription": {
+                                    "description": "Description of the Api Revision.",
+                                    "maxLength": 256,
+                                    "type": "string"
+                                },
+                                "apiVersion": {
+                                    "description": "Indicates the Version identifier of the API if the API is versioned",
+                                    "maxLength": 100,
+                                    "type": "string"
+                                },
+                                "apiVersionDescription": {
+                                    "description": "Description of the Api Version.",
+                                    "maxLength": 256,
+                                    "type": "string"
+                                },
+                                "apiVersionSetId": {
+                                    "description": "A resource identifier for the related ApiVersionSet.",
+                                    "type": "string"
+                                },
+                                "authenticationSettings": {
+                                    "description": "API Authentication Settings.",
+                                    "properties": {
+                                        "oAuth2": {
+                                            "description": "API OAuth2 Authentication settings details.",
+                                            "properties": {
+                                                "authorizationServerId": {
+                                                    "description": "OAuth authorization server identifier.",
+                                                    "type": "string"
+                                                },
+                                                "scope": {
+                                                    "description": "operations scope.",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "openid": {
+                                            "description": "API OAuth2 Authentication settings details.",
+                                            "properties": {
+                                                "bearerTokenSendingMethods": {
+                                                    "description": "How to send token to the server.",
+                                                    "items": {
+                                                        "description": "Form of an authorization grant, which the client uses to request the access token.",
+                                                        "enum": [
+                                                            "authorizationHeader",
+                                                            "query"
+                                                        ],
+                                                        "type": "string",
+                                                        "x-ms-enum": {
+                                                            "modelAsString": true,
+                                                            "name": "bearerTokenSendingMethods",
+                                                            "values": [
+                                                                {
+                                                                    "description": "Access token will be transmitted in the Authorization header using Bearer schema",
+                                                                    "value": "authorizationHeader"
+                                                                },
+                                                                {
+                                                                    "description": "Access token will be transmitted as query parameters.",
+                                                                    "value": "query"
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    "type": "array"
+                                                },
+                                                "openidProviderId": {
+                                                    "description": "OAuth authorization server identifier.",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "subscriptionKeyRequired": {
+                                            "description": "Specifies whether subscription key is required during call to this API, true - API is included into closed products only, false - API is included into open products alone, null - there is a mix of products.",
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "description": {
+                                    "description": "Description of the API. May include HTML formatting tags.",
+                                    "type": "string"
+                                },
+                                "isCurrent": {
+                                    "description": "Indicates if API revision is current api revision.",
+                                    "readOnly": true,
+                                    "type": "boolean"
+                                },
+                                "isOnline": {
+                                    "description": "Indicates if API revision is accessible via the gateway.",
+                                    "readOnly": true,
+                                    "type": "boolean"
+                                },
+                                "subscriptionKeyParameterNames": {
+                                    "description": "Subscription key parameter names details.",
+                                    "example": {
+                                        "subscriptionKeyParameterNames": {
+                                            "header": "customHeaderParameterName",
+                                            "query": "customQueryParameterName"
+                                        }
+                                    },
+                                    "properties": {
+                                        "header": {
+                                            "description": "Subscription key header name.",
+                                            "type": "string"
+                                        },
+                                        "query": {
+                                            "description": "Subscription key query string parameter name.",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "subscriptionRequired": {
+                                    "description": "Specifies whether an API or Product subscription is required for accessing the API.",
+                                    "type": "boolean"
+                                },
+                                "type": {
+                                    "description": "Type of API.",
+                                    "enum": [
+                                        "http",
+                                        "soap"
+                                    ],
+                                    "type": "string",
+                                    "x-ms-client-name": "ApiType",
+                                    "x-ms-enum": {
+                                        "modelAsString": true,
+                                        "name": "ApiType"
+                                    }
+                                }
+                            },
+                            "type": "object"
+                        }
+                    ],
+                    "properties": {
+                        "displayName": {
+                            "description": "API name.",
+                            "maxLength": 300,
+                            "minLength": 1,
+                            "type": "string"
+                        },
+                        "path": {
+                            "description": "Relative URL uniquely identifying this API and all of its resource paths within the API Management service instance. It is appended to the API endpoint base URL specified during the service instance creation to form a public URL for this API.",
+                            "maxLength": 400,
+                            "minLength": 0,
+                            "type": "string"
+                        },
+                        "protocols": {
+                            "description": "Describes on which protocols the operations in this API can be invoked.",
+                            "items": {
+                                "enum": [
+                                    "http",
+                                    "https"
+                                ],
+                                "type": "string",
+                                "x-ms-enum": {
+                                    "modelAsString": false,
+                                    "name": "Protocol"
+                                }
+                            },
+                            "type": "array"
+                        },
+                        "serviceUrl": {
+                            "description": "Absolute URL of the backend service implementing this API.",
+                            "maxLength": 2000,
+                            "minLength": 1,
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "If_Match": {
+            "required": true,
+            "type": "string"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

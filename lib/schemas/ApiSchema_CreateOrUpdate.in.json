@@ -1,0 +1,96 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "serviceName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50,
+            "pattern": "^[a-zA-Z](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$"
+        },
+        "apiId": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256,
+            "pattern": "^[^*#&+:<>?]+$"
+        },
+        "schemaId": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80,
+            "pattern": "^[^*#&+:<>?]+$"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "The Resource definition.",
+                    "properties": {
+                        "id": {
+                            "description": "Resource ID.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "Resource name.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "type": {
+                            "description": "Resource type for API Management resource.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "x-ms-azure-resource": true,
+                    "type": "object"
+                }
+            ],
+            "description": "Schema Contract details.",
+            "properties": {
+                "properties": {
+                    "description": "Properties of the Schema.",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "contentType": {
+                            "description": "Must be a valid a media type used in a Content-Type header as defined in the RFC 2616. Media type of the schema document (e.g. application/json, application/xml).",
+                            "type": "string"
+                        },
+                        "document": {
+                            "description": "Properties of the Schema Document.",
+                            "x-ms-client-flatten": true,
+                            "properties": {
+                                "value": {
+                                    "description": "Json escaped string defining the document representing the Schema.",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "required": [
+                        "contentType"
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "If_Match": {
+            "required": false,
+            "type": "string"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,102 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "serviceName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50,
+            "pattern": "^[a-zA-Z](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$"
+        },
+        "apiId": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80,
+            "pattern": "^[^*#&+:<>?]+$"
+        },
+        "issueId": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256,
+            "pattern": "^[^*#&+:<>?]+$"
+        },
+        "attachmentId": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256,
+            "pattern": "^[^*#&+:<>?]+$"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "The Resource definition.",
+                    "properties": {
+                        "id": {
+                            "description": "Resource ID.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "Resource name.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "type": {
+                            "description": "Resource type for API Management resource.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "x-ms-azure-resource": true,
+                    "type": "object"
+                }
+            ],
+            "description": "Issue Attachment Contract details.",
+            "properties": {
+                "properties": {
+                    "description": "Properties of the Issue Attachment.",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "content": {
+                            "description": "An HTTP link or Base64-encoded binary data.",
+                            "type": "string"
+                        },
+                        "contentFormat": {
+                            "description": "Either 'link' if content is provided via an HTTP link or the MIME type of the Base64-encoded binary data provided in the 'content' property.",
+                            "type": "string"
+                        },
+                        "title": {
+                            "description": "Filename by which the binary data will be saved.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "title",
+                        "contentFormat",
+                        "content"
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "If_Match": {
+            "required": false,
+            "type": "string"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

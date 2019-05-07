@@ -1,0 +1,1316 @@
+{
+    "title": "ApiManagementClient",
+    "description": "Use these REST APIs for performing operations on API entity and their Operations associated with your Azure API Management deployment.",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/azure.com/apimanagement-apimapis/2018-06-01-preview/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://management.azure.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "azure_auth": {
+                "label": "Azure Active Directory OAuth2 Flow.",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://login.microsoftonline.com/common/oauth2/authorize"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "Api_ListByService": {
+            "main": "./lib/actions/Api_ListByService.js",
+            "title": "Lists all APIs of the API Management service instance.",
+            "description": "Lists all APIs of the API Management service instance.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Api_ListByService.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Api_Delete": {
+            "main": "./lib/actions/Api_Delete.js",
+            "title": "Deletes the specified API of the API Management service instance.",
+            "description": "Deletes the specified API of the API Management service instance.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Api_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Api_Get": {
+            "main": "./lib/actions/Api_Get.js",
+            "title": "Gets the details of the API specified by its identifier.",
+            "description": "Gets the details of the API specified by its identifier.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Api_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Api_GetEntityTag": {
+            "main": "./lib/actions/Api_GetEntityTag.js",
+            "title": "Gets the entity state (Etag) version of the API specified by its identifier.",
+            "description": "Gets the entity state (Etag) version of the API specified by its identifier.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Api_GetEntityTag.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Api_Update": {
+            "main": "./lib/actions/Api_Update.js",
+            "title": "Updates the specified API of the API Management service instance.",
+            "description": "Updates the specified API of the API Management service instance.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Api_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Api_CreateOrUpdate": {
+            "main": "./lib/actions/Api_CreateOrUpdate.js",
+            "title": "Creates new or updates existing specified API of the API Management service instance.",
+            "description": "Creates new or updates existing specified API of the API Management service instance.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "application/vnd.sun.wadl+xml": "application/vnd.sun.wadl+xml",
+                        "application/vnd.swagger.doc+json": "application/vnd.swagger.doc+json",
+                        "application/wsdl+xml": "application/wsdl+xml",
+                        "application/vnd.oai.openapi": "application/vnd.oai.openapi",
+                        "application/vnd.oai.openapi+json": "application/vnd.oai.openapi+json"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Api_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiDiagnostic_ListByService": {
+            "main": "./lib/actions/ApiDiagnostic_ListByService.js",
+            "title": "Lists all diagnostics of an API.",
+            "description": "Lists all diagnostics of an API.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiDiagnostic_ListByService.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiDiagnostic_Delete": {
+            "main": "./lib/actions/ApiDiagnostic_Delete.js",
+            "title": "Deletes the specified Diagnostic from an API.",
+            "description": "Deletes the specified Diagnostic from an API.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiDiagnostic_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiDiagnostic_Get": {
+            "main": "./lib/actions/ApiDiagnostic_Get.js",
+            "title": "Gets the details of the Diagnostic for an API specified by its identifier.",
+            "description": "Gets the details of the Diagnostic for an API specified by its identifier.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiDiagnostic_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiDiagnostic_GetEntityTag": {
+            "main": "./lib/actions/ApiDiagnostic_GetEntityTag.js",
+            "title": "Gets the entity state (Etag) version of the Diagnostic for an API specified by its identifier.",
+            "description": "Gets the entity state (Etag) version of the Diagnostic for an API specified by its identifier.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiDiagnostic_GetEntityTag.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiDiagnostic_Update": {
+            "main": "./lib/actions/ApiDiagnostic_Update.js",
+            "title": "Updates the details of the Diagnostic for an API specified by its identifier.",
+            "description": "Updates the details of the Diagnostic for an API specified by its identifier.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiDiagnostic_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiDiagnostic_CreateOrUpdate": {
+            "main": "./lib/actions/ApiDiagnostic_CreateOrUpdate.js",
+            "title": "Creates a new Diagnostic for an API or updates an existing one.",
+            "description": "Creates a new Diagnostic for an API or updates an existing one.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiDiagnostic_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiIssue_ListByService": {
+            "main": "./lib/actions/ApiIssue_ListByService.js",
+            "title": "Lists all issues associated with the specified API.",
+            "description": "Lists all issues associated with the specified API.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiIssue_ListByService.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiIssue_Delete": {
+            "main": "./lib/actions/ApiIssue_Delete.js",
+            "title": "Deletes the specified Issue from an API.",
+            "description": "Deletes the specified Issue from an API.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiIssue_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiIssue_Get": {
+            "main": "./lib/actions/ApiIssue_Get.js",
+            "title": "Gets the details of the Issue for an API specified by its identifier.",
+            "description": "Gets the details of the Issue for an API specified by its identifier.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiIssue_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiIssue_GetEntityTag": {
+            "main": "./lib/actions/ApiIssue_GetEntityTag.js",
+            "title": "Gets the entity state (Etag) version of the Issue for an API specified by its identifier.",
+            "description": "Gets the entity state (Etag) version of the Issue for an API specified by its identifier.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiIssue_GetEntityTag.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiIssue_Update": {
+            "main": "./lib/actions/ApiIssue_Update.js",
+            "title": "Updates an existing issue for an API.",
+            "description": "Updates an existing issue for an API.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiIssue_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiIssue_CreateOrUpdate": {
+            "main": "./lib/actions/ApiIssue_CreateOrUpdate.js",
+            "title": "Creates a new Issue for an API or updates an existing one.",
+            "description": "Creates a new Issue for an API or updates an existing one.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiIssue_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiIssueAttachment_ListByService": {
+            "main": "./lib/actions/ApiIssueAttachment_ListByService.js",
+            "title": "Lists all attachments for the Issue associated with the specified API.",
+            "description": "Lists all attachments for the Issue associated with the specified API.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiIssueAttachment_ListByService.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiIssueAttachment_Delete": {
+            "main": "./lib/actions/ApiIssueAttachment_Delete.js",
+            "title": "Deletes the specified comment from an Issue.",
+            "description": "Deletes the specified comment from an Issue.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiIssueAttachment_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiIssueAttachment_Get": {
+            "main": "./lib/actions/ApiIssueAttachment_Get.js",
+            "title": "Gets the details of the issue Attachment for an API specified by its identifier.",
+            "description": "Gets the details of the issue Attachment for an API specified by its identifier.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiIssueAttachment_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiIssueAttachment_GetEntityTag": {
+            "main": "./lib/actions/ApiIssueAttachment_GetEntityTag.js",
+            "title": "Gets the entity state (Etag) version of the issue Attachment for an API specified by its identifier.",
+            "description": "Gets the entity state (Etag) version of the issue Attachment for an API specified by its identifier.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiIssueAttachment_GetEntityTag.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiIssueAttachment_CreateOrUpdate": {
+            "main": "./lib/actions/ApiIssueAttachment_CreateOrUpdate.js",
+            "title": "Creates a new Attachment for the Issue in an API or updates an existing one.",
+            "description": "Creates a new Attachment for the Issue in an API or updates an existing one.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiIssueAttachment_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiIssueComment_ListByService": {
+            "main": "./lib/actions/ApiIssueComment_ListByService.js",
+            "title": "Lists all comments for the Issue associated with the specified API.",
+            "description": "Lists all comments for the Issue associated with the specified API.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiIssueComment_ListByService.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiIssueComment_Delete": {
+            "main": "./lib/actions/ApiIssueComment_Delete.js",
+            "title": "Deletes the specified comment from an Issue.",
+            "description": "Deletes the specified comment from an Issue.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiIssueComment_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiIssueComment_Get": {
+            "main": "./lib/actions/ApiIssueComment_Get.js",
+            "title": "Gets the details of the issue Comment for an API specified by its identifier.",
+            "description": "Gets the details of the issue Comment for an API specified by its identifier.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiIssueComment_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiIssueComment_GetEntityTag": {
+            "main": "./lib/actions/ApiIssueComment_GetEntityTag.js",
+            "title": "Gets the entity state (Etag) version of the issue Comment for an API specified by its identifier.",
+            "description": "Gets the entity state (Etag) version of the issue Comment for an API specified by its identifier.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiIssueComment_GetEntityTag.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiIssueComment_CreateOrUpdate": {
+            "main": "./lib/actions/ApiIssueComment_CreateOrUpdate.js",
+            "title": "Creates a new Comment for the Issue in an API or updates an existing one.",
+            "description": "Creates a new Comment for the Issue in an API or updates an existing one.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiIssueComment_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiOperation_ListByApi": {
+            "main": "./lib/actions/ApiOperation_ListByApi.js",
+            "title": "Lists a collection of the operations for the specified API.",
+            "description": "Lists a collection of the operations for the specified API.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiOperation_ListByApi.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiOperation_Delete": {
+            "main": "./lib/actions/ApiOperation_Delete.js",
+            "title": "Deletes the specified operation in the API.",
+            "description": "Deletes the specified operation in the API.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiOperation_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiOperation_Get": {
+            "main": "./lib/actions/ApiOperation_Get.js",
+            "title": "Gets the details of the API Operation specified by its identifier.",
+            "description": "Gets the details of the API Operation specified by its identifier.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiOperation_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiOperation_GetEntityTag": {
+            "main": "./lib/actions/ApiOperation_GetEntityTag.js",
+            "title": "Gets the entity state (Etag) version of the API operation specified by its identifier.",
+            "description": "Gets the entity state (Etag) version of the API operation specified by its identifier.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiOperation_GetEntityTag.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiOperation_Update": {
+            "main": "./lib/actions/ApiOperation_Update.js",
+            "title": "Updates the details of the operation in the API specified by its identifier.",
+            "description": "Updates the details of the operation in the API specified by its identifier.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiOperation_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiOperation_CreateOrUpdate": {
+            "main": "./lib/actions/ApiOperation_CreateOrUpdate.js",
+            "title": "Creates a new operation in the API or updates an existing one.",
+            "description": "Creates a new operation in the API or updates an existing one.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiOperation_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiOperationPolicy_ListByOperation": {
+            "main": "./lib/actions/ApiOperationPolicy_ListByOperation.js",
+            "title": "Get the list of policy configuration at the API Operation level.",
+            "description": "Get the list of policy configuration at the API Operation level.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiOperationPolicy_ListByOperation.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiOperationPolicy_Delete": {
+            "main": "./lib/actions/ApiOperationPolicy_Delete.js",
+            "title": "Deletes the policy configuration at the Api Operation.",
+            "description": "Deletes the policy configuration at the Api Operation.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiOperationPolicy_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiOperationPolicy_Get": {
+            "main": "./lib/actions/ApiOperationPolicy_Get.js",
+            "title": "Get the policy configuration at the API Operation level.",
+            "description": "Get the policy configuration at the API Operation level.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiOperationPolicy_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiOperationPolicy_GetEntityTag": {
+            "main": "./lib/actions/ApiOperationPolicy_GetEntityTag.js",
+            "title": "Gets the entity state (Etag) version of the API operation policy specified by its identifier.",
+            "description": "Gets the entity state (Etag) version of the API operation policy specified by its identifier.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiOperationPolicy_GetEntityTag.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiOperationPolicy_CreateOrUpdate": {
+            "main": "./lib/actions/ApiOperationPolicy_CreateOrUpdate.js",
+            "title": "Creates or updates policy configuration for the API Operation level.",
+            "description": "Creates or updates policy configuration for the API Operation level.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiOperationPolicy_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Tag_ListByOperation": {
+            "main": "./lib/actions/Tag_ListByOperation.js",
+            "title": "Lists all Tags associated with the Operation.",
+            "description": "Lists all Tags associated with the Operation.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Tag_ListByOperation.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Tag_DetachFromOperation": {
+            "main": "./lib/actions/Tag_DetachFromOperation.js",
+            "title": "Detach the tag from the Operation.",
+            "description": "Detach the tag from the Operation.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Tag_DetachFromOperation.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Tag_GetByOperation": {
+            "main": "./lib/actions/Tag_GetByOperation.js",
+            "title": "Get tag associated with the Operation.",
+            "description": "Get tag associated with the Operation.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Tag_GetByOperation.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Tag_GetEntityStateByOperation": {
+            "main": "./lib/actions/Tag_GetEntityStateByOperation.js",
+            "title": "Gets the entity state version of the tag specified by its identifier.",
+            "description": "Gets the entity state version of the tag specified by its identifier.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Tag_GetEntityStateByOperation.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Tag_AssignToOperation": {
+            "main": "./lib/actions/Tag_AssignToOperation.js",
+            "title": "Assign tag to the Operation.",
+            "description": "Assign tag to the Operation.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Tag_AssignToOperation.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Operation_ListByTags": {
+            "main": "./lib/actions/Operation_ListByTags.js",
+            "title": "Lists a collection of operations associated with tags.",
+            "description": "Lists a collection of operations associated with tags.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Operation_ListByTags.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiPolicy_ListByApi": {
+            "main": "./lib/actions/ApiPolicy_ListByApi.js",
+            "title": "Get the policy configuration at the API level.",
+            "description": "Get the policy configuration at the API level.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiPolicy_ListByApi.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiPolicy_Delete": {
+            "main": "./lib/actions/ApiPolicy_Delete.js",
+            "title": "Deletes the policy configuration at the Api.",
+            "description": "Deletes the policy configuration at the Api.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiPolicy_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiPolicy_Get": {
+            "main": "./lib/actions/ApiPolicy_Get.js",
+            "title": "Get the policy configuration at the API level.",
+            "description": "Get the policy configuration at the API level.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiPolicy_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiPolicy_GetEntityTag": {
+            "main": "./lib/actions/ApiPolicy_GetEntityTag.js",
+            "title": "Gets the entity state (Etag) version of the API policy specified by its identifier.",
+            "description": "Gets the entity state (Etag) version of the API policy specified by its identifier.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiPolicy_GetEntityTag.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiPolicy_CreateOrUpdate": {
+            "main": "./lib/actions/ApiPolicy_CreateOrUpdate.js",
+            "title": "Creates or updates policy configuration for the API.",
+            "description": "Creates or updates policy configuration for the API.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "application/vnd.ms-azure-apim.policy+xml": "application/vnd.ms-azure-apim.policy+xml",
+                        "application/vnd.ms-azure-apim.policy.raw+xml": "application/vnd.ms-azure-apim.policy.raw+xml"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiPolicy_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiProduct_ListByApis": {
+            "main": "./lib/actions/ApiProduct_ListByApis.js",
+            "title": "Lists all Products, which the API is part of.",
+            "description": "Lists all Products, which the API is part of.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiProduct_ListByApis.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiRelease_List": {
+            "main": "./lib/actions/ApiRelease_List.js",
+            "title": "Lists all releases of an API. An API release is created when making an API Revision current. Releases are also used to rollback to previous revisions. Results will be paged and can be constrained by the $top and $skip parameters.",
+            "description": "Lists all releases of an API. An API release is created when making an API Revision current. Releases are also used to rollback to previous revisions. Results will be paged and can be constrained by the $top and $skip parameters.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiRelease_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiRelease_Delete": {
+            "main": "./lib/actions/ApiRelease_Delete.js",
+            "title": "Deletes the specified release in the API.",
+            "description": "Deletes the specified release in the API.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiRelease_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiRelease_Get": {
+            "main": "./lib/actions/ApiRelease_Get.js",
+            "title": "Returns the details of an API release.",
+            "description": "Returns the details of an API release.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiRelease_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiRelease_GetEntityTag": {
+            "main": "./lib/actions/ApiRelease_GetEntityTag.js",
+            "title": "Returns the etag of an API release.",
+            "description": "Returns the etag of an API release.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiRelease_GetEntityTag.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiRelease_Update": {
+            "main": "./lib/actions/ApiRelease_Update.js",
+            "title": "Updates the details of the release of the API specified by its identifier.",
+            "description": "Updates the details of the release of the API specified by its identifier.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiRelease_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiRelease_Create": {
+            "main": "./lib/actions/ApiRelease_Create.js",
+            "title": "Creates a new Release for the API.",
+            "description": "Creates a new Release for the API.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiRelease_Create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiRevisions_List": {
+            "main": "./lib/actions/ApiRevisions_List.js",
+            "title": "Lists all revisions of an API.",
+            "description": "Lists all revisions of an API.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiRevisions_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiSchema_ListByApi": {
+            "main": "./lib/actions/ApiSchema_ListByApi.js",
+            "title": "Get the schema configuration at the API level.",
+            "description": "Get the schema configuration at the API level.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiSchema_ListByApi.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiSchema_Delete": {
+            "main": "./lib/actions/ApiSchema_Delete.js",
+            "title": "Deletes the schema configuration at the Api.",
+            "description": "Deletes the schema configuration at the Api.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiSchema_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiSchema_Get": {
+            "main": "./lib/actions/ApiSchema_Get.js",
+            "title": "Get the schema configuration at the API level.",
+            "description": "Get the schema configuration at the API level.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiSchema_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiSchema_GetEntityTag": {
+            "main": "./lib/actions/ApiSchema_GetEntityTag.js",
+            "title": "Gets the entity state (Etag) version of the schema specified by its identifier.",
+            "description": "Gets the entity state (Etag) version of the schema specified by its identifier.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiSchema_GetEntityTag.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ApiSchema_CreateOrUpdate": {
+            "main": "./lib/actions/ApiSchema_CreateOrUpdate.js",
+            "title": "Creates or updates schema configuration for the API.",
+            "description": "Creates or updates schema configuration for the API.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ApiSchema_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "TagDescription_ListByApi": {
+            "main": "./lib/actions/TagDescription_ListByApi.js",
+            "title": "Lists all Tags descriptions in scope of API. Model similar to swagger - tagDescription is defined on API level but tag may be assigned to the Operations",
+            "description": "Lists all Tags descriptions in scope of API. Model similar to swagger - tagDescription is defined on API level but tag may be assigned to the Operations",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/TagDescription_ListByApi.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "TagDescription_Delete": {
+            "main": "./lib/actions/TagDescription_Delete.js",
+            "title": "Delete tag description for the Api.",
+            "description": "Delete tag description for the Api.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/TagDescription_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "TagDescription_Get": {
+            "main": "./lib/actions/TagDescription_Get.js",
+            "title": "Get Tag description in scope of API",
+            "description": "Get Tag description in scope of API",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/TagDescription_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "TagDescription_GetEntityState": {
+            "main": "./lib/actions/TagDescription_GetEntityState.js",
+            "title": "Gets the entity state version of the tag specified by its identifier.",
+            "description": "Gets the entity state version of the tag specified by its identifier.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/TagDescription_GetEntityState.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "TagDescription_CreateOrUpdate": {
+            "main": "./lib/actions/TagDescription_CreateOrUpdate.js",
+            "title": "Create/Update tag description in scope of the Api.",
+            "description": "Create/Update tag description in scope of the Api.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/TagDescription_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Tag_ListByApi": {
+            "main": "./lib/actions/Tag_ListByApi.js",
+            "title": "Lists all Tags associated with the API.",
+            "description": "Lists all Tags associated with the API.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Tag_ListByApi.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Tag_DetachFromApi": {
+            "main": "./lib/actions/Tag_DetachFromApi.js",
+            "title": "Detach the tag from the Api.",
+            "description": "Detach the tag from the Api.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Tag_DetachFromApi.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Tag_GetByApi": {
+            "main": "./lib/actions/Tag_GetByApi.js",
+            "title": "Get tag associated with the API.",
+            "description": "Get tag associated with the API.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Tag_GetByApi.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Tag_GetEntityStateByApi": {
+            "main": "./lib/actions/Tag_GetEntityStateByApi.js",
+            "title": "Gets the entity state version of the tag specified by its identifier.",
+            "description": "Gets the entity state version of the tag specified by its identifier.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Tag_GetEntityStateByApi.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Tag_AssignToApi": {
+            "main": "./lib/actions/Tag_AssignToApi.js",
+            "title": "Assign tag to the Api.",
+            "description": "Assign tag to the Api.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Tag_AssignToApi.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

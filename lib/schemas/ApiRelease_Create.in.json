@@ -1,0 +1,98 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "serviceName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50,
+            "pattern": "^[a-zA-Z](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$"
+        },
+        "apiId": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80,
+            "pattern": "^[^*#&+:<>?]+$"
+        },
+        "releaseId": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80,
+            "pattern": "^[^*#&+:<>?]+$"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "The Resource definition.",
+                    "properties": {
+                        "id": {
+                            "description": "Resource ID.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "Resource name.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "type": {
+                            "description": "Resource type for API Management resource.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "x-ms-azure-resource": true,
+                    "type": "object"
+                }
+            ],
+            "description": "Api Release details.",
+            "properties": {
+                "properties": {
+                    "description": "Properties of the Api Release Contract.",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "apiId": {
+                            "description": "Identifier of the API the release belongs to.",
+                            "type": "string"
+                        },
+                        "createdDateTime": {
+                            "description": "The time the API was released. The date conforms to the following format: yyyy-MM-ddTHH:mm:ssZ as specified by the ISO 8601 standard.",
+                            "format": "date-time",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "notes": {
+                            "description": "Release Notes",
+                            "type": "string"
+                        },
+                        "updatedDateTime": {
+                            "description": "The time the API release was updated.",
+                            "format": "date-time",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "If_Match": {
+            "required": false,
+            "type": "string"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

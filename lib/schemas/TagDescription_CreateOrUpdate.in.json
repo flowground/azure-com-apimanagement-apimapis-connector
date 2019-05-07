@@ -1,0 +1,66 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "serviceName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50,
+            "pattern": "^[a-zA-Z](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$"
+        },
+        "apiId": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256,
+            "pattern": "^[^*#&+:<>?]+$"
+        },
+        "tagId": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80,
+            "pattern": "^[^*#&+:<>?]+$"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Parameters supplied to the Create TagDescription operation.",
+            "properties": {
+                "properties": {
+                    "description": "Parameters supplied to the Create TagDescription operation.",
+                    "properties": {
+                        "description": {
+                            "description": "Description of the Tag.",
+                            "type": "string"
+                        },
+                        "externalDocsDescription": {
+                            "description": "Description of the external resources describing the tag.",
+                            "type": "string"
+                        },
+                        "externalDocsUrl": {
+                            "description": "Absolute URL of external resources describing the tag.",
+                            "maxLength": 2000,
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "If_Match": {
+            "required": false,
+            "type": "string"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

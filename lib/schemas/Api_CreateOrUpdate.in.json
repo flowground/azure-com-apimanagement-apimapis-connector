@@ -1,0 +1,366 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "serviceName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50,
+            "pattern": "^[a-zA-Z](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$"
+        },
+        "apiId": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256,
+            "pattern": "^[^*#&+:<>?]+$"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "API Create or Update Parameters.",
+            "properties": {
+                "properties": {
+                    "description": "Api entity create of update properties.",
+                    "x-ms-client-flatten": true,
+                    "allOf": [
+                        {
+                            "allOf": [
+                                {
+                                    "description": "API base contract details.",
+                                    "properties": {
+                                        "apiRevision": {
+                                            "description": "Describes the Revision of the Api. If no value is provided, default revision 1 is created",
+                                            "maxLength": 100,
+                                            "minLength": 1,
+                                            "type": "string"
+                                        },
+                                        "apiRevisionDescription": {
+                                            "description": "Description of the Api Revision.",
+                                            "maxLength": 256,
+                                            "type": "string"
+                                        },
+                                        "apiVersion": {
+                                            "description": "Indicates the Version identifier of the API if the API is versioned",
+                                            "maxLength": 100,
+                                            "type": "string"
+                                        },
+                                        "apiVersionDescription": {
+                                            "description": "Description of the Api Version.",
+                                            "maxLength": 256,
+                                            "type": "string"
+                                        },
+                                        "apiVersionSetId": {
+                                            "description": "A resource identifier for the related ApiVersionSet.",
+                                            "type": "string"
+                                        },
+                                        "authenticationSettings": {
+                                            "description": "API Authentication Settings.",
+                                            "properties": {
+                                                "oAuth2": {
+                                                    "description": "API OAuth2 Authentication settings details.",
+                                                    "properties": {
+                                                        "authorizationServerId": {
+                                                            "description": "OAuth authorization server identifier.",
+                                                            "type": "string"
+                                                        },
+                                                        "scope": {
+                                                            "description": "operations scope.",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "openid": {
+                                                    "description": "API OAuth2 Authentication settings details.",
+                                                    "properties": {
+                                                        "bearerTokenSendingMethods": {
+                                                            "description": "How to send token to the server.",
+                                                            "items": {
+                                                                "description": "Form of an authorization grant, which the client uses to request the access token.",
+                                                                "enum": [
+                                                                    "authorizationHeader",
+                                                                    "query"
+                                                                ],
+                                                                "type": "string",
+                                                                "x-ms-enum": {
+                                                                    "modelAsString": true,
+                                                                    "name": "bearerTokenSendingMethods",
+                                                                    "values": [
+                                                                        {
+                                                                            "description": "Access token will be transmitted in the Authorization header using Bearer schema",
+                                                                            "value": "authorizationHeader"
+                                                                        },
+                                                                        {
+                                                                            "description": "Access token will be transmitted as query parameters.",
+                                                                            "value": "query"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            },
+                                                            "type": "array"
+                                                        },
+                                                        "openidProviderId": {
+                                                            "description": "OAuth authorization server identifier.",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "subscriptionKeyRequired": {
+                                                    "description": "Specifies whether subscription key is required during call to this API, true - API is included into closed products only, false - API is included into open products alone, null - there is a mix of products.",
+                                                    "type": "boolean"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "description": {
+                                            "description": "Description of the API. May include HTML formatting tags.",
+                                            "type": "string"
+                                        },
+                                        "isCurrent": {
+                                            "description": "Indicates if API revision is current api revision.",
+                                            "readOnly": true,
+                                            "type": "boolean"
+                                        },
+                                        "isOnline": {
+                                            "description": "Indicates if API revision is accessible via the gateway.",
+                                            "readOnly": true,
+                                            "type": "boolean"
+                                        },
+                                        "subscriptionKeyParameterNames": {
+                                            "description": "Subscription key parameter names details.",
+                                            "example": {
+                                                "subscriptionKeyParameterNames": {
+                                                    "header": "customHeaderParameterName",
+                                                    "query": "customQueryParameterName"
+                                                }
+                                            },
+                                            "properties": {
+                                                "header": {
+                                                    "description": "Subscription key header name.",
+                                                    "type": "string"
+                                                },
+                                                "query": {
+                                                    "description": "Subscription key query string parameter name.",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "subscriptionRequired": {
+                                            "description": "Specifies whether an API or Product subscription is required for accessing the API.",
+                                            "type": "boolean"
+                                        },
+                                        "type": {
+                                            "description": "Type of API.",
+                                            "enum": [
+                                                "http",
+                                                "soap"
+                                            ],
+                                            "type": "string",
+                                            "x-ms-client-name": "ApiType",
+                                            "x-ms-enum": {
+                                                "modelAsString": true,
+                                                "name": "ApiType"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            ],
+                            "description": "Api Entity Properties",
+                            "properties": {
+                                "apiVersionSet": {
+                                    "description": "An API Version Set contains the common configuration for a set of API Versions relating ",
+                                    "properties": {
+                                        "description": {
+                                            "description": "Description of API Version Set.",
+                                            "type": "string"
+                                        },
+                                        "id": {
+                                            "description": "Identifier for existing API Version Set. Omit this value to create a new Version Set.",
+                                            "type": "string"
+                                        },
+                                        "versionHeaderName": {
+                                            "description": "Name of HTTP header parameter that indicates the API Version if versioningScheme is set to `header`.",
+                                            "type": "string"
+                                        },
+                                        "versionQueryName": {
+                                            "description": "Name of query parameter that indicates the API Version if versioningScheme is set to `query`.",
+                                            "type": "string"
+                                        },
+                                        "versioningScheme": {
+                                            "description": "An value that determines where the API Version identifer will be located in a HTTP request.",
+                                            "enum": [
+                                                "Segment",
+                                                "Query",
+                                                "Header"
+                                            ],
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "displayName": {
+                                    "description": "API name.",
+                                    "maxLength": 300,
+                                    "minLength": 1,
+                                    "type": "string"
+                                },
+                                "path": {
+                                    "description": "Relative URL uniquely identifying this API and all of its resource paths within the API Management service instance. It is appended to the API endpoint base URL specified during the service instance creation to form a public URL for this API.",
+                                    "maxLength": 400,
+                                    "minLength": 0,
+                                    "type": "string"
+                                },
+                                "protocols": {
+                                    "description": "Describes on which protocols the operations in this API can be invoked.",
+                                    "items": {
+                                        "enum": [
+                                            "http",
+                                            "https"
+                                        ],
+                                        "type": "string",
+                                        "x-ms-enum": {
+                                            "modelAsString": false,
+                                            "name": "Protocol"
+                                        }
+                                    },
+                                    "type": "array"
+                                },
+                                "serviceUrl": {
+                                    "description": "Absolute URL of the backend service implementing this API.",
+                                    "maxLength": 2000,
+                                    "minLength": 0,
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "path"
+                            ],
+                            "type": "object"
+                        }
+                    ],
+                    "properties": {
+                        "apiType": {
+                            "description": "Type of Api to create. \n * `http` creates a SOAP to REST API \n * `soap` creates a SOAP pass-through API .",
+                            "enum": [
+                                "http",
+                                "soap"
+                            ],
+                            "type": "string",
+                            "x-ms-client-name": "SoapApiType",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "SoapApiType",
+                                "values": [
+                                    {
+                                        "description": "Imports a SOAP API having a RESTful front end.",
+                                        "name": "SoapToRest",
+                                        "value": "http"
+                                    },
+                                    {
+                                        "description": "Imports the Soap API having a SOAP front end.",
+                                        "name": "SoapPassThrough",
+                                        "value": "soap"
+                                    }
+                                ]
+                            }
+                        },
+                        "contentFormat": {
+                            "description": "Format of the Content in which the API is getting imported.",
+                            "enum": [
+                                "wadl-xml",
+                                "wadl-link-json",
+                                "swagger-json",
+                                "swagger-link-json",
+                                "wsdl",
+                                "wsdl-link",
+                                "openapi",
+                                "openapi+json",
+                                "openapi-link"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "ContentFormat",
+                                "values": [
+                                    {
+                                        "description": "The contents are inline and Content type is a WADL document.",
+                                        "value": "wadl-xml"
+                                    },
+                                    {
+                                        "description": "The WADL document is hosted on a publicly accessible internet address.",
+                                        "value": "wadl-link-json"
+                                    },
+                                    {
+                                        "description": "The contents are inline and Content Type is a OpenApi 2.0 Document.",
+                                        "value": "swagger-json"
+                                    },
+                                    {
+                                        "description": "The Open Api 2.0 document is hosted on a publicly accessible internet address.",
+                                        "value": "swagger-link-json"
+                                    },
+                                    {
+                                        "description": "The contents are inline and the document is a WSDL/Soap document.",
+                                        "value": "wsdl"
+                                    },
+                                    {
+                                        "description": "The WSDL document is hosted on a publicly accessible internet address.",
+                                        "value": "wsdl-link"
+                                    },
+                                    {
+                                        "description": "The contents are inline and Content Type is a OpenApi 3.0 Document in YAML format.",
+                                        "value": "openapi"
+                                    },
+                                    {
+                                        "description": "The contents are inline and Content Type is a OpenApi 3.0 Document in JSON format.",
+                                        "value": "openapi+json"
+                                    },
+                                    {
+                                        "description": "The Open Api 3.0 document is hosted on a publicly accessible internet address.",
+                                        "value": "openapi-link"
+                                    }
+                                ]
+                            }
+                        },
+                        "contentValue": {
+                            "description": "Content value when Importing an API.",
+                            "type": "string"
+                        },
+                        "wsdlSelector": {
+                            "description": "Criteria to limit import of WSDL to a subset of the document.",
+                            "properties": {
+                                "wsdlEndpointName": {
+                                    "description": "Name of endpoint(port) to import from WSDL",
+                                    "type": "string"
+                                },
+                                "wsdlServiceName": {
+                                    "description": "Name of service to import from WSDL",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "If_Match": {
+            "required": false,
+            "type": "string"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

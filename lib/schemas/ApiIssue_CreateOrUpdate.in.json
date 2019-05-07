@@ -1,0 +1,149 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "serviceName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50,
+            "pattern": "^[a-zA-Z](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$"
+        },
+        "apiId": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80,
+            "pattern": "^[^*#&+:<>?]+$"
+        },
+        "issueId": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256,
+            "pattern": "^[^*#&+:<>?]+$"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "The Resource definition.",
+                    "properties": {
+                        "id": {
+                            "description": "Resource ID.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "Resource name.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "type": {
+                            "description": "Resource type for API Management resource.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "x-ms-azure-resource": true,
+                    "type": "object"
+                }
+            ],
+            "description": "Issue Contract details.",
+            "properties": {
+                "properties": {
+                    "description": "Properties of the Issue.",
+                    "x-ms-client-flatten": true,
+                    "allOf": [
+                        {
+                            "description": "Issue contract Base Properties.",
+                            "properties": {
+                                "apiId": {
+                                    "description": "A resource identifier for the API the issue was created for.",
+                                    "type": "string"
+                                },
+                                "createdDate": {
+                                    "description": "Date and time when the issue was created.",
+                                    "format": "date-time",
+                                    "type": "string"
+                                },
+                                "state": {
+                                    "description": "Status of the issue.",
+                                    "enum": [
+                                        "proposed",
+                                        "open",
+                                        "removed",
+                                        "resolved",
+                                        "closed"
+                                    ],
+                                    "type": "string",
+                                    "x-ms-enum": {
+                                        "modelAsString": true,
+                                        "name": "State",
+                                        "values": [
+                                            {
+                                                "description": "The issue is proposed.",
+                                                "value": "proposed"
+                                            },
+                                            {
+                                                "description": "The issue is opened.",
+                                                "value": "open"
+                                            },
+                                            {
+                                                "description": "The issue was removed.",
+                                                "value": "removed"
+                                            },
+                                            {
+                                                "description": "The issue is now resolved.",
+                                                "value": "resolved"
+                                            },
+                                            {
+                                                "description": "The issue was closed.",
+                                                "value": "closed"
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            "type": "object"
+                        }
+                    ],
+                    "properties": {
+                        "description": {
+                            "description": "Text describing the issue.",
+                            "type": "string"
+                        },
+                        "title": {
+                            "description": "The issue title.",
+                            "type": "string"
+                        },
+                        "userId": {
+                            "description": "A resource identifier for the user created the issue.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "title",
+                        "description",
+                        "userId"
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "If_Match": {
+            "required": false,
+            "type": "string"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

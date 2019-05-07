@@ -1,0 +1,456 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "serviceName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50,
+            "pattern": "^[a-zA-Z](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$"
+        },
+        "apiId": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256,
+            "pattern": "^[^*#&+:<>?]+$"
+        },
+        "operationId": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80,
+            "pattern": "^[^*#&+:<>?]+$"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "The Resource definition.",
+                    "properties": {
+                        "id": {
+                            "description": "Resource ID.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "Resource name.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "type": {
+                            "description": "Resource type for API Management resource.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "x-ms-azure-resource": true,
+                    "type": "object"
+                }
+            ],
+            "description": "Api Operation details.",
+            "properties": {
+                "properties": {
+                    "description": "Properties of the Operation Contract.",
+                    "x-ms-client-flatten": true,
+                    "allOf": [
+                        {
+                            "description": "Api Operation Entity Base Contract details.",
+                            "properties": {
+                                "description": {
+                                    "description": "Description of the operation. May include HTML formatting tags.",
+                                    "maxLength": 1000,
+                                    "type": "string"
+                                },
+                                "policies": {
+                                    "description": "Operation Policies",
+                                    "type": "string"
+                                },
+                                "request": {
+                                    "description": "An entity containing request details.",
+                                    "properties": {
+                                        "description": {
+                                            "description": "Operation request description.",
+                                            "type": "string"
+                                        },
+                                        "headers": {
+                                            "description": "Collection of operation request headers.",
+                                            "items": {
+                                                "description": "Operation parameters details.",
+                                                "properties": {
+                                                    "defaultValue": {
+                                                        "description": "Default parameter value.",
+                                                        "type": "string"
+                                                    },
+                                                    "description": {
+                                                        "description": "Parameter description.",
+                                                        "type": "string"
+                                                    },
+                                                    "name": {
+                                                        "description": "Parameter name.",
+                                                        "type": "string"
+                                                    },
+                                                    "required": {
+                                                        "description": "whether parameter is required or not.",
+                                                        "type": "boolean"
+                                                    },
+                                                    "type": {
+                                                        "description": "Parameter type.",
+                                                        "type": "string"
+                                                    },
+                                                    "values": {
+                                                        "description": "Parameter values.",
+                                                        "items": {
+                                                            "type": "string"
+                                                        },
+                                                        "type": "array"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "name",
+                                                    "type"
+                                                ],
+                                                "type": "object"
+                                            },
+                                            "type": "array"
+                                        },
+                                        "queryParameters": {
+                                            "description": "Collection of operation request query parameters.",
+                                            "items": {
+                                                "description": "Operation parameters details.",
+                                                "properties": {
+                                                    "defaultValue": {
+                                                        "description": "Default parameter value.",
+                                                        "type": "string"
+                                                    },
+                                                    "description": {
+                                                        "description": "Parameter description.",
+                                                        "type": "string"
+                                                    },
+                                                    "name": {
+                                                        "description": "Parameter name.",
+                                                        "type": "string"
+                                                    },
+                                                    "required": {
+                                                        "description": "whether parameter is required or not.",
+                                                        "type": "boolean"
+                                                    },
+                                                    "type": {
+                                                        "description": "Parameter type.",
+                                                        "type": "string"
+                                                    },
+                                                    "values": {
+                                                        "description": "Parameter values.",
+                                                        "items": {
+                                                            "type": "string"
+                                                        },
+                                                        "type": "array"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "name",
+                                                    "type"
+                                                ],
+                                                "type": "object"
+                                            },
+                                            "type": "array"
+                                        },
+                                        "representations": {
+                                            "description": "Collection of operation request representations.",
+                                            "items": {
+                                                "description": "Operation request/response representation details.",
+                                                "properties": {
+                                                    "contentType": {
+                                                        "description": "Specifies a registered or custom content type for this representation, e.g. application/xml.",
+                                                        "type": "string"
+                                                    },
+                                                    "formParameters": {
+                                                        "description": "Collection of form parameters. Required if 'contentType' value is either 'application/x-www-form-urlencoded' or 'multipart/form-data'..",
+                                                        "items": {
+                                                            "description": "Operation parameters details.",
+                                                            "properties": {
+                                                                "defaultValue": {
+                                                                    "description": "Default parameter value.",
+                                                                    "type": "string"
+                                                                },
+                                                                "description": {
+                                                                    "description": "Parameter description.",
+                                                                    "type": "string"
+                                                                },
+                                                                "name": {
+                                                                    "description": "Parameter name.",
+                                                                    "type": "string"
+                                                                },
+                                                                "required": {
+                                                                    "description": "whether parameter is required or not.",
+                                                                    "type": "boolean"
+                                                                },
+                                                                "type": {
+                                                                    "description": "Parameter type.",
+                                                                    "type": "string"
+                                                                },
+                                                                "values": {
+                                                                    "description": "Parameter values.",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "type": "array"
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "name",
+                                                                "type"
+                                                            ],
+                                                            "type": "object"
+                                                        },
+                                                        "type": "array"
+                                                    },
+                                                    "sample": {
+                                                        "description": "An example of the representation.",
+                                                        "type": "string"
+                                                    },
+                                                    "schemaId": {
+                                                        "description": "Schema identifier. Applicable only if 'contentType' value is neither 'application/x-www-form-urlencoded' nor 'multipart/form-data'.",
+                                                        "type": "string"
+                                                    },
+                                                    "typeName": {
+                                                        "description": "Type name defined by the schema. Applicable only if 'contentType' value is neither 'application/x-www-form-urlencoded' nor 'multipart/form-data'.",
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "contentType"
+                                                ],
+                                                "type": "object"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "responses": {
+                                    "description": "Array of Operation responses.",
+                                    "items": {
+                                        "description": "Operation response details.",
+                                        "properties": {
+                                            "description": {
+                                                "description": "Operation response description.",
+                                                "type": "string"
+                                            },
+                                            "headers": {
+                                                "description": "Collection of operation response headers.",
+                                                "items": {
+                                                    "description": "Operation parameters details.",
+                                                    "properties": {
+                                                        "defaultValue": {
+                                                            "description": "Default parameter value.",
+                                                            "type": "string"
+                                                        },
+                                                        "description": {
+                                                            "description": "Parameter description.",
+                                                            "type": "string"
+                                                        },
+                                                        "name": {
+                                                            "description": "Parameter name.",
+                                                            "type": "string"
+                                                        },
+                                                        "required": {
+                                                            "description": "whether parameter is required or not.",
+                                                            "type": "boolean"
+                                                        },
+                                                        "type": {
+                                                            "description": "Parameter type.",
+                                                            "type": "string"
+                                                        },
+                                                        "values": {
+                                                            "description": "Parameter values.",
+                                                            "items": {
+                                                                "type": "string"
+                                                            },
+                                                            "type": "array"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "name",
+                                                        "type"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                "type": "array"
+                                            },
+                                            "representations": {
+                                                "description": "Collection of operation response representations.",
+                                                "items": {
+                                                    "description": "Operation request/response representation details.",
+                                                    "properties": {
+                                                        "contentType": {
+                                                            "description": "Specifies a registered or custom content type for this representation, e.g. application/xml.",
+                                                            "type": "string"
+                                                        },
+                                                        "formParameters": {
+                                                            "description": "Collection of form parameters. Required if 'contentType' value is either 'application/x-www-form-urlencoded' or 'multipart/form-data'..",
+                                                            "items": {
+                                                                "description": "Operation parameters details.",
+                                                                "properties": {
+                                                                    "defaultValue": {
+                                                                        "description": "Default parameter value.",
+                                                                        "type": "string"
+                                                                    },
+                                                                    "description": {
+                                                                        "description": "Parameter description.",
+                                                                        "type": "string"
+                                                                    },
+                                                                    "name": {
+                                                                        "description": "Parameter name.",
+                                                                        "type": "string"
+                                                                    },
+                                                                    "required": {
+                                                                        "description": "whether parameter is required or not.",
+                                                                        "type": "boolean"
+                                                                    },
+                                                                    "type": {
+                                                                        "description": "Parameter type.",
+                                                                        "type": "string"
+                                                                    },
+                                                                    "values": {
+                                                                        "description": "Parameter values.",
+                                                                        "items": {
+                                                                            "type": "string"
+                                                                        },
+                                                                        "type": "array"
+                                                                    }
+                                                                },
+                                                                "required": [
+                                                                    "name",
+                                                                    "type"
+                                                                ],
+                                                                "type": "object"
+                                                            },
+                                                            "type": "array"
+                                                        },
+                                                        "sample": {
+                                                            "description": "An example of the representation.",
+                                                            "type": "string"
+                                                        },
+                                                        "schemaId": {
+                                                            "description": "Schema identifier. Applicable only if 'contentType' value is neither 'application/x-www-form-urlencoded' nor 'multipart/form-data'.",
+                                                            "type": "string"
+                                                        },
+                                                        "typeName": {
+                                                            "description": "Type name defined by the schema. Applicable only if 'contentType' value is neither 'application/x-www-form-urlencoded' nor 'multipart/form-data'.",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "contentType"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                "type": "array"
+                                            },
+                                            "statusCode": {
+                                                "description": "Operation response HTTP status code.",
+                                                "format": "int32",
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "required": [
+                                            "statusCode"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "templateParameters": {
+                                    "description": "Collection of URL template parameters.",
+                                    "items": {
+                                        "description": "Operation parameters details.",
+                                        "properties": {
+                                            "defaultValue": {
+                                                "description": "Default parameter value.",
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "description": "Parameter description.",
+                                                "type": "string"
+                                            },
+                                            "name": {
+                                                "description": "Parameter name.",
+                                                "type": "string"
+                                            },
+                                            "required": {
+                                                "description": "whether parameter is required or not.",
+                                                "type": "boolean"
+                                            },
+                                            "type": {
+                                                "description": "Parameter type.",
+                                                "type": "string"
+                                            },
+                                            "values": {
+                                                "description": "Parameter values.",
+                                                "items": {
+                                                    "type": "string"
+                                                },
+                                                "type": "array"
+                                            }
+                                        },
+                                        "required": [
+                                            "name",
+                                            "type"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    ],
+                    "properties": {
+                        "displayName": {
+                            "description": "Operation Name.",
+                            "maxLength": 300,
+                            "minLength": 1,
+                            "type": "string"
+                        },
+                        "method": {
+                            "description": "A Valid HTTP Operation Method. Typical Http Methods like GET, PUT, POST but not limited by only them.",
+                            "externalDocs": {
+                                "description": "As defined by RFC.",
+                                "url": "http://www.rfc-editor.org/rfc/rfc7230.txt"
+                            },
+                            "type": "string"
+                        },
+                        "urlTemplate": {
+                            "description": "Relative URL template identifying the target resource for this operation. May include parameters. Example: /customers/{cid}/orders/{oid}/?date={date}",
+                            "maxLength": 1000,
+                            "minLength": 1,
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "displayName",
+                        "method",
+                        "urlTemplate"
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "If_Match": {
+            "required": false,
+            "type": "string"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,247 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "serviceName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50,
+            "pattern": "^[a-zA-Z](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$"
+        },
+        "apiId": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80,
+            "pattern": "^[^*#&+:<>?]+$"
+        },
+        "diagnosticId": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80,
+            "pattern": "^[^*#&+:<>?]+$"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "The Resource definition.",
+                    "properties": {
+                        "id": {
+                            "description": "Resource ID.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "Resource name.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "type": {
+                            "description": "Resource type for API Management resource.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "x-ms-azure-resource": true,
+                    "type": "object"
+                }
+            ],
+            "description": "Diagnostic details.",
+            "properties": {
+                "properties": {
+                    "description": "Diagnostic Entity Properties",
+                    "properties": {
+                        "alwaysLog": {
+                            "description": "Specifies for what type of messages sampling settings should not apply.",
+                            "enum": [
+                                "allErrors"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "AlwaysLog",
+                                "values": [
+                                    {
+                                        "description": "Always log all erroneous request regardless of sampling settings.",
+                                        "value": "allErrors"
+                                    }
+                                ]
+                            }
+                        },
+                        "backend": {
+                            "description": "Diagnostic settings for incoming/outgoing HTTP messages to the Gateway.",
+                            "properties": {
+                                "request": {
+                                    "description": "Http message diagnostic settings.",
+                                    "properties": {
+                                        "body": {
+                                            "description": "Body logging settings.",
+                                            "properties": {
+                                                "bytes": {
+                                                    "description": "Number of request body bytes to log.",
+                                                    "format": "int32",
+                                                    "maximum": 8192,
+                                                    "type": "integer"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "headers": {
+                                            "description": "Array of HTTP Headers to log.",
+                                            "items": {
+                                                "type": "string"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "response": {
+                                    "description": "Http message diagnostic settings.",
+                                    "properties": {
+                                        "body": {
+                                            "description": "Body logging settings.",
+                                            "properties": {
+                                                "bytes": {
+                                                    "description": "Number of request body bytes to log.",
+                                                    "format": "int32",
+                                                    "maximum": 8192,
+                                                    "type": "integer"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "headers": {
+                                            "description": "Array of HTTP Headers to log.",
+                                            "items": {
+                                                "type": "string"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "enableHttpCorrelationHeaders": {
+                            "description": "Whether to process Correlation Headers coming to Api Management Service. Only applicable to Application Insights diagnostics. Default is true.",
+                            "type": "boolean"
+                        },
+                        "frontend": {
+                            "description": "Diagnostic settings for incoming/outgoing HTTP messages to the Gateway.",
+                            "properties": {
+                                "request": {
+                                    "description": "Http message diagnostic settings.",
+                                    "properties": {
+                                        "body": {
+                                            "description": "Body logging settings.",
+                                            "properties": {
+                                                "bytes": {
+                                                    "description": "Number of request body bytes to log.",
+                                                    "format": "int32",
+                                                    "maximum": 8192,
+                                                    "type": "integer"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "headers": {
+                                            "description": "Array of HTTP Headers to log.",
+                                            "items": {
+                                                "type": "string"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "response": {
+                                    "description": "Http message diagnostic settings.",
+                                    "properties": {
+                                        "body": {
+                                            "description": "Body logging settings.",
+                                            "properties": {
+                                                "bytes": {
+                                                    "description": "Number of request body bytes to log.",
+                                                    "format": "int32",
+                                                    "maximum": 8192,
+                                                    "type": "integer"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "headers": {
+                                            "description": "Array of HTTP Headers to log.",
+                                            "items": {
+                                                "type": "string"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "loggerId": {
+                            "description": "Resource Id of a target logger.",
+                            "type": "string"
+                        },
+                        "sampling": {
+                            "description": "Sampling settings for Diagnostic.",
+                            "properties": {
+                                "percentage": {
+                                    "description": "Rate of sampling for fixed-rate sampling.",
+                                    "format": "double",
+                                    "maximum": 100,
+                                    "minimum": 0,
+                                    "type": "number"
+                                },
+                                "samplingType": {
+                                    "description": "Sampling type.",
+                                    "enum": [
+                                        "fixed"
+                                    ],
+                                    "type": "string",
+                                    "x-ms-enum": {
+                                        "modelAsString": true,
+                                        "name": "SamplingType",
+                                        "values": [
+                                            {
+                                                "description": "Fixed-rate sampling.",
+                                                "value": "fixed"
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "required": [
+                        "loggerId"
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "If_Match": {
+            "required": false,
+            "type": "string"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
