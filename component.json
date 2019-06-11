@@ -1,5 +1,5 @@
 {
-    "title": "ApiManagementClient",
+    "title": "ApiManagementClient (apimanagement-apimapis)",
     "description": "Use these REST APIs for performing operations on API entity and their Operations associated with your Azure API Management deployment.",
     "docsUrl": "",
     "url": "https://api.apis.guru/v2/specs/azure.com/apimanagement-apimapis/2018-06-01-preview/swagger.json",
@@ -26,7 +26,7 @@
                 "label": "Custom Server URL",
                 "viewClass": "TextFieldView"
             },
-            "azure_auth": {
+            "oauth2": {
                 "label": "Azure Active Directory OAuth2 Flow.",
                 "viewClass": "OAuthFieldView"
             }
@@ -34,7 +34,11 @@
         "oauth2": {
             "client_id": "{{OAUTH_CLIENT_ID}}",
             "client_secret": "{{OAUTH_CLIENT_SECRET}}",
-            "auth_uri": "https://login.microsoftonline.com/common/oauth2/authorize"
+            "auth_uri": "https://login.microsoftonline.com/common/oauth2/authorize",
+            "token_uri": "https://login.microsoftonline.com/common/oauth2/token",
+            "scopes": [
+                "user_impersonation"
+            ]
         }
     },
     "triggers": {
@@ -147,11 +151,11 @@
                     "prompt": "Choose a body Content-Type.",
                     "model": {
                         "application/json": "application/json",
-                        "application/vnd.sun.wadl+xml": "application/vnd.sun.wadl+xml",
-                        "application/vnd.swagger.doc+json": "application/vnd.swagger.doc+json",
+                        "application/vnd%2Esun%2Ewadl+xml": "application/vnd.sun.wadl+xml",
+                        "application/vnd%2Eswagger%2Edoc+json": "application/vnd.swagger.doc+json",
                         "application/wsdl+xml": "application/wsdl+xml",
-                        "application/vnd.oai.openapi": "application/vnd.oai.openapi",
-                        "application/vnd.oai.openapi+json": "application/vnd.oai.openapi+json"
+                        "application/vnd%2Eoai%2Eopenapi": "application/vnd.oai.openapi",
+                        "application/vnd%2Eoai%2Eopenapi+json": "application/vnd.oai.openapi+json"
                     }
                 }
             },
@@ -909,8 +913,8 @@
                     "prompt": "Choose a body Content-Type.",
                     "model": {
                         "application/json": "application/json",
-                        "application/vnd.ms-azure-apim.policy+xml": "application/vnd.ms-azure-apim.policy+xml",
-                        "application/vnd.ms-azure-apim.policy.raw+xml": "application/vnd.ms-azure-apim.policy.raw+xml"
+                        "application/vnd%2Ems-azure-apim%2Epolicy+xml": "application/vnd.ms-azure-apim.policy+xml",
+                        "application/vnd%2Ems-azure-apim%2Epolicy%2Eraw+xml": "application/vnd.ms-azure-apim.policy.raw+xml"
                     }
                 }
             },
